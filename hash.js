@@ -4,7 +4,7 @@ function giveHash(index, timestamp, previousHash)
 {
     var sIndex = "" + index;
     var sTimestamp = "" + timestamp;
-    var s 
+    var sPreviousHash = "" + previousHash
     var Apple = index+timestamp+previousHash;
     console.log(Apple)
     var sha256 = crypto.createHash('sha256').update(Apple).digest("hex");
