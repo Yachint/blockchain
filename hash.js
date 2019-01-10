@@ -5,6 +5,7 @@ function giveHash(index, timestamp, previousHash)
     var sIndex = "" + index;
     var sTimestamp = "" + timestamp;
     var sPreviousHash = "" + previousHash
+    var mind  = 56;
     var Apple = index+timestamp+previousHash;
     console.log(Apple)
     var sha256 = crypto.createHash('sha256').update(Apple).digest("hex");
