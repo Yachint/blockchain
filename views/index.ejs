@@ -1,0 +1,15 @@
+<!DOCTYPE html>  
+<html>  
+<head>
+  <meta charset="utf-8">
+  <title>User page</title>
+</head>
+<body>
+  <h1>Users</h1>
+  <ul>
+    <% for (var i = 0; i < users.length; i++) { %>
+    <li> <a href="/user?name=<%= users[i] %>"><%= users[i] %></a> </li>
+    <% } %>
+  </ul>
+</body>
+</html>  
