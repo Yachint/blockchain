@@ -1,9 +1,9 @@
 var crypto = require('crypto');
 
-function giveHash(index, timestamp, previousHash, tid, amt_pay)
+function giveHash(index, timestamp, previousHash, tid, amt_pay, cr_acc, db_acc)
 {
     var mHash = "";
-    var Apple =""+index+timestamp+previousHash+tid+amt_pay;
+    var Apple =""+index+timestamp+previousHash+tid+amt_pay+cr_acc+db_acc;
     console.log("--------", Apple)
     var sha256 = crypto.createHash('sha256').update(Apple).digest("hex");
     var check = 0;

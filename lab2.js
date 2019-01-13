@@ -2,6 +2,7 @@ const hash = require('./hash');
 function blk(){
     this.chain = [];
     this.pendingTransactions = [];
+    this.chainsize = this.chain.length;
 }
 
 
@@ -25,6 +26,7 @@ const newBlock = {
 
 this.pendingTransactions = [];
 this.chain.push(newBlock);
+this.chainsize++;
 
 
 
