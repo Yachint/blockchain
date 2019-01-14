@@ -1,6 +1,10 @@
 const Blockchain = require('./lab2');
 const bitcoin = new Blockchain();
-bitcoin.createNewBlock("DepartmentA", "John Doe",
- "afec7b0b5bd3551bfd00d058ecdaed43be97e7279d23840b0ae8e1de7cb07b8b",
- 200000,4465717853912318,5459646395863355);
+bitcoin.createNewBlock(bitcoin.chain[0].hash);
+bitcoin.createNewTransaction(100,'aaa111','bbb111');
+bitcoin.createNewBlock(bitcoin.chain[1].hash);
+bitcoin.createNewTransaction(100,'ccc111','ddd111');
+bitcoin.createNewTransaction(100,'eee111','fff111');
+bitcoin.createNewTransaction(100,'ggg111','hhh111');
 console.log(bitcoin);
+

@@ -3,23 +3,30 @@ function blk(){
     this.chain = [];
     this.pendingTransactions = [];
     this.chainsize = this.chain.length;
+    this.createNewBlock(100,'0','0');
+}
+
+blk.prototype.getLastBlock = function(){
+    return this.chain[this.chain.length-1];
+}
+
+blk.prototype.createNewTransaction = function(amount,sender,recepeint){
+    const newTransaction = {
+        amount:amount,
+        sender:sender,
+        recepeint:recepeint
+    };
+    this.pendingTransactions.push(newTransaction);
+    return this.getLastBlock()['index']+1;
 }
 
 
-blk.prototype.createNewBlock = function(tFrom, tTO ,previousBlockHash, amt_payable, credit_acc_no, debit_acc_no ){
+blk.prototype.createNewBlock = function(previousBlockHash){
 const newBlock = {
-    trans_from : tFrom,
-    trans_to : tTO,
-    pay : amt_payable,
-    Cred_acc : credit_acc_no,
-    Deb_acc : debit_acc_no,
-    transaction_id : ""+tFrom+"_"+tTO+"_"+this.chain.length+1+"_"+Date.now(),
     index: this.chain.length+1,
     timestamp: Date.now(),
     transactions: this.pendingTransactions,
-    hash: hash(this.chain.length+1, Date.now(), previousBlockHash, 
-    ""+tFrom+tTO+this.chain.length+1+Date.now(), amt_payable,
-    credit_acc_no, debit_acc_no),
+    hash: hash(this.pendingTransactions, previousBlockHash),
     previousBlockHash : previousBlockHash
 }
 
