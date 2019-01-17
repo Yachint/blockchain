@@ -6,6 +6,16 @@
 // var g = b.toString();
 // console.log(g);
 
+//Key Generation
+const hash = require('./hash');
+const QuickEncrypt = require('quick-encrypt')
+let keys = QuickEncrypt.generate(1024)
+console.log(keys);
+let publicKey = keys.public
+let privateKey = keys.private 
+
+
+//PDF to byte conversion
 var fs = require('fs');
 
 function pdf_encode(file){
@@ -20,6 +30,18 @@ function pdf_decode(base64str , file){
 
 }
 
+
+//MAIN---------------------------------------------------
 var base64str = pdf_encode('test.pdf');
 console.log(base64str);
-pdf_decode(base64str, 'decoded.pdf');
+var hashed = hash("", base64str);
+console.log('Hashed :',hashed);
+//Encrypting file with public key
+let encryptedFile = QuickEncrypt.encrypt(hashed, publicKey );
+console.log(encryptedFile);
+
+//Decrypting with Private key
+let decryptedFile = QuickEncrypt.decrypt( encryptedFile, privateKey)
+console.log('De-Hashed :',decryptedFile);
+
+//pdf_decode(decryptedFile, 'PubDecoded.pdf');
