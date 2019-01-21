@@ -13,8 +13,13 @@
     "bluebird": "^3.5.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+<<<<<<< HEAD
     "lz-string": "^1.4.4",
+=======
+    "move-file": "^1.0.0",
+>>>>>>> dbcc6ca0d9e0eb7b56f3cd88f2762eb5ffacbefc
     "nan": "^2.12.1",
-    "quick-encrypt": "^1.0.8"
+    "quick-encrypt": "^1.0.8",
+    "zlib": "^1.0.5"
   }
 }
