@@ -13,6 +13,7 @@
     "bluebird": "^3.5.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "lz-string": "^1.4.4",
     "nan": "^2.12.1",
     "quick-encrypt": "^1.0.8"
   }

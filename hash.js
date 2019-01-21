@@ -13,7 +13,7 @@ function giveHash(currBlkData, previousHash)
         mHash = crypto.createHash('sha256').update(Apple+nonce).digest("hex");
         console.log(mHash)
 
-        if (mHash.charAt(0)==0){
+        if (mHash.charAt(0)==0 && mHash.charAt(1)==0){
             console.log('Hash is accepted!');
             console.log('At Nonce :', nonce)
             check = 1;

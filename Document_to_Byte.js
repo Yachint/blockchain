@@ -7,6 +7,7 @@
 // console.log(g);
 
 //Key Generation
+const Lzma = require('lz-string');
 const hash = require('./hash');
 const QuickEncrypt = require('quick-encrypt')
 let keys = QuickEncrypt.generate(1024)
@@ -33,11 +34,13 @@ function pdf_decode(base64str , file){
 
 //MAIN---------------------------------------------------
 var base64str = pdf_encode('test.pdf');
-console.log(base64str);
-var hashed = hash("", base64str);
-console.log('Hashed :',hashed);
+console.log(base64str.length);
+var compress = Lzma.compress(base64str);
+console.log(compress.toString());
+//var hashed = hash("", base64str);
+//console.log('Hashed :',hashed);
 //Encrypting file with public key
-let encryptedFile = QuickEncrypt.encrypt(hashed, publicKey );
+let encryptedFile = QuickEncrypt.encrypt(compress, publicKey );
 console.log(encryptedFile);
 
 //Decrypting with Private key
