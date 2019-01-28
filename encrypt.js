@@ -23,4 +23,4 @@ function encrypt({file, password}){
         .pipe(writeStream);
 }
 
-encrypt({file: './test.pdf', password:'ImeanIt'});
+encrypt({file: './MyFile.pdf', password:'ImeanIt'});

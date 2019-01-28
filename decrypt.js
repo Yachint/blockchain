@@ -40,4 +40,4 @@ function decrypt({file, password}){
     });
 }
 
-decrypt({file: './test.pdf.enc', password :'ImeanIt'});
+decrypt({file: './MyFile.pdf.enc', password :'ImeanIt'});
