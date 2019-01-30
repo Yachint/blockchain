@@ -1,10 +1,19 @@
 const hash = require('./hash');
+const merkle = require('./Merkle_tree');
+var crypto = require('crypto');
 function blk(){
     this.chain = [];
     this.pendingTransactions = [];
     this.chainsize = this.chain.length;
     this.createNewBlock(100,'0','0');
 }
+
+const createTransHash = (amt, sender, recvr) => {
+    var info = ''+amt+sender+recvr;
+    var sha256 = crypto.createHash('sha256').update(info).digest("hex");
+    return sha256;
+}
+
 
 blk.prototype.getLastBlock = function(){
     return this.chain[this.chain.length-1];
@@ -14,7 +23,9 @@ blk.prototype.createNewTransaction = function(amount,sender,recepeint){
     const newTransaction = {
         amount:amount,
         sender:sender,
-        recepeint:recepeint
+        recepeint:recepeint,
+        hash: crypto.createHash('sha256').update(createTransHash(amount,sender,recepeint)).digest("hex")
+
     };
     this.pendingTransactions.push(newTransaction);
     return this.getLastBlock()['index']+1;
@@ -27,6 +38,7 @@ const newBlock = {
     timestamp: Date.now(),
     transactions: this.pendingTransactions,
     hash: hash(this.pendingTransactions, previousBlockHash),
+    merkle_root : merkle(this.pendingTransactions),
     previousBlockHash : previousBlockHash
 }
 
