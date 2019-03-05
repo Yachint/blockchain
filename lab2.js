@@ -1,10 +1,13 @@
 const hash = require('./hash');
 const merkle = require('./Merkle_tree');
 var crypto = require('crypto');
+const currentNodeUrl = process.argv[3];
 function blk(){
     this.chain = [];
     this.pendingTransactions = [];
     this.chainsize = this.chain.length;
+    this.currentNodeUrl = currentNodeUrl;
+    this.networkNodes = [];
     this.createNewBlock(100,'0','0');
 }
 

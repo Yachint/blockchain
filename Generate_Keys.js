@@ -1,11 +1,18 @@
 const QuickEncrypt = require('quick-encrypt')
 const crypto = require('crypto');
+var eccrypto = require('eccrypto');
 const fs = require('fs');
  
 let keys = QuickEncrypt.generate(1024) // Use either 2048 bits or 1024 bits.
 console.log(keys) // Generated Public Key and Private Key pair
 let publicKey = keys.public      // " -----BEGIN RSA PUBLIC KEY-----\nMIGJAoGBAIXlXZs+0FoIGBc5pjnZZxtvIzdDFtNi3SVi6vf2J...... "
 let privateKey = keys.private   // " -----BEGIN RSA PUBLIC KEY-----\nMIGJAoGBAIXlXZs+0FoIGBc5pjnZZxtvIzdDFtNi3SVi6vf2J...... "
+let privECDA = crypto.randomBytes(32);
+console.log('Type :', typeof(privECDA));
+let pubECDA = eccrypto.getPublic(privECDA);
+
+const writeECDAPrivate = fs.writeFileSync('private_ECDA.pem', privECDA);
+const writeECDAPublic = fs.writeFileSync('public_ECDA.pem', pubECDA);
 const writePubKey = fs.writeFileSync('public.pem', publicKey);
 const writePrivKey = fs.writeFileSync('private.pem', privateKey);
 
