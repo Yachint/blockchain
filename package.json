@@ -26,7 +26,7 @@
     "nodemon": "^1.18.9",
     "quick-encrypt": "^1.0.8",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2",
+    "request-promise": "^4.2.4",
     "uuid": "^3.3.2",
     "zlib": "^1.0.5"
   }
