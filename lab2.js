@@ -1,6 +1,7 @@
 const hash = require('./hash');
 const merkle = require('./Merkle_tree');
 var crypto = require('crypto');
+const uuid = require('uuid/v1');
 const currentNodeUrl = process.argv[3];
 function blk(){
     this.chain = [];
@@ -27,13 +28,18 @@ blk.prototype.createNewTransaction = function(amount,sender,recepeint){
         amount:amount,
         sender:sender,
         recepeint:recepeint,
+        transactionId : uuid().split('-').join(''),
         hash: crypto.createHash('sha256').update(createTransHash(amount,sender,recepeint)).digest("hex")
 
     };
-    this.pendingTransactions.push(newTransaction);
-    return this.getLastBlock()['index']+1;
+    return newTransaction;
 }
 
+//ATTPT = Add Transaction to Pending Transactions
+blk.prototype.ATTPT = function(transactionObj){
+    this.pendingTransactions.push(transactionObj);
+    return this.getLastBlock()['index'] + 1;
+}
 
 blk.prototype.createNewBlock = function(previousBlockHash){
 const newBlock = {
