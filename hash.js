@@ -22,7 +22,7 @@ function giveHash(currBlkData, previousHash)
         {
             console.log('Hash is not accepted');
             nonce = nonce + 1;
-        }23, Date.now(), "afec7b0b5bd3551bfd00d058ecdaed43be97e7279d23840b0ae8e1de7cb07b8b"
+        }
     }
 
     return mHash; 
